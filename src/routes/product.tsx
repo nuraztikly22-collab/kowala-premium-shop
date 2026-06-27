@@ -90,14 +90,15 @@ function Product() {
               <p className="text-xs font-medium tracking-wide uppercase text-muted-foreground mb-3">Choose your bundle</p>
               <div className="grid grid-cols-2 gap-3">
                 <BundleCard active={bundle === 1} onClick={() => setBundle(1)} label="1 Sling" sub="Single" price={499} />
-                <BundleCard active={bundle === 2} onClick={() => setBundle(2)} label="2 Slings" sub="Most Popular" price={900} compareAt={998} highlight />
+                <BundleCard active={bundle === 2} onClick={() => setBundle(2)} label="2 Slings" sub="Most Popular" price={899} compareAt={998} highlight />
               </div>
+              <p className="text-xs text-muted-foreground mt-3">Tip: add any 2 singles to your cart and the bundle price applies automatically.</p>
             </div>
 
             {/* Colour */}
             <div className="mt-7">
               <div className="flex items-center justify-between mb-3">
-                <p className="text-xs font-medium tracking-wide uppercase text-muted-foreground">Colour</p>
+                <p className="text-xs font-medium tracking-wide uppercase text-muted-foreground">{bundle === 2 ? "First colour" : "Colour"}</p>
                 <p className="text-sm">{color.name}</p>
               </div>
               <div className="flex gap-3">
@@ -114,6 +115,29 @@ function Product() {
                 ))}
               </div>
             </div>
+
+            {bundle === 2 && (
+              <div className="mt-6">
+                <div className="flex items-center justify-between mb-3">
+                  <p className="text-xs font-medium tracking-wide uppercase text-muted-foreground">Second colour</p>
+                  <p className="text-sm">{color2.name}</p>
+                </div>
+                <div className="flex gap-3">
+                  {COLORS.map((c) => (
+                    <button
+                      key={c.key}
+                      onClick={() => setColor2Key(c.key)}
+                      aria-label={c.name}
+                      className={`relative w-12 h-12 rounded-full transition ring-offset-2 ${color2Key === c.key ? "ring-2 ring-primary" : "ring-1 ring-border"}`}
+                      style={{ backgroundColor: c.swatch }}
+                    >
+                      {color2Key === c.key && <Check className="absolute inset-0 m-auto w-4 h-4 text-white mix-blend-difference" />}
+                    </button>
+                  ))}
+                </div>
+                <p className="text-xs text-muted-foreground mt-2">Mix &amp; match — pick two different colours or the same one twice.</p>
+              </div>
+            )}
 
             {/* Quantity */}
             <div className="mt-7">
