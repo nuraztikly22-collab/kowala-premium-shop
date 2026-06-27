@@ -34,10 +34,17 @@ export function CartDrawer() {
             </div>
           ) : items.map((it) => (
             <div key={it.id} className="flex gap-4 py-4 border-b border-border last:border-0">
-              <img src={it.image} alt={it.colorName} className="w-20 h-24 object-cover rounded-xl bg-beige" />
+              <div className="relative w-20 h-24 shrink-0">
+                <img src={it.image} alt={it.colorName} className="w-full h-full object-cover rounded-xl bg-beige" />
+                {it.image2 && (
+                  <img src={it.image2} alt={it.color2Name} className="absolute -bottom-2 -right-2 w-10 h-12 object-cover rounded-lg ring-2 ring-white bg-beige" />
+                )}
+              </div>
               <div className="flex-1 min-w-0">
                 <p className="font-medium text-sm">Kowala Sling Carrier</p>
-                <p className="text-xs text-muted-foreground mt-0.5">{it.colorName} · {it.bundle === 2 ? "2-Pack Bundle" : "Single"}</p>
+                <p className="text-xs text-muted-foreground mt-0.5">
+                  {it.bundle === 2 ? `2-Pack · ${it.colorName} + ${it.color2Name ?? it.colorName}` : `Single · ${it.colorName}`}
+                </p>
                 <div className="flex items-center justify-between mt-3">
                   <div className="flex items-center border border-border rounded-full">
                     <button onClick={() => setQty(it.id, it.qty - 1)} className="w-8 h-8 flex items-center justify-center"><Minus className="w-3.5 h-3.5" /></button>
