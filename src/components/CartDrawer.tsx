@@ -4,7 +4,7 @@ import { formatZAR, useCart } from "@/lib/cart";
 import { useEffect } from "react";
 
 export function CartDrawer() {
-  const { items, open, setOpen, remove, setQty, total } = useCart();
+  const { items, open, setOpen, remove, setQty, subtotal, total, bundleSavings } = useCart();
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -34,10 +34,17 @@ export function CartDrawer() {
             </div>
           ) : items.map((it) => (
             <div key={it.id} className="flex gap-4 py-4 border-b border-border last:border-0">
-              <img src={it.image} alt={it.colorName} className="w-20 h-24 object-cover rounded-xl bg-beige" />
+              <div className="relative w-20 h-24 shrink-0">
+                <img src={it.image} alt={it.colorName} className="w-full h-full object-cover rounded-xl bg-beige" />
+                {it.image2 && (
+                  <img src={it.image2} alt={it.color2Name} className="absolute -bottom-2 -right-2 w-10 h-12 object-cover rounded-lg ring-2 ring-white bg-beige" />
+                )}
+              </div>
               <div className="flex-1 min-w-0">
                 <p className="font-medium text-sm">Kowala Sling Carrier</p>
-                <p className="text-xs text-muted-foreground mt-0.5">{it.colorName} · {it.bundle === 2 ? "2-Pack Bundle" : "Single"}</p>
+                <p className="text-xs text-muted-foreground mt-0.5">
+                  {it.bundle === 2 ? `2-Pack · ${it.colorName} + ${it.color2Name ?? it.colorName}` : `Single · ${it.colorName}`}
+                </p>
                 <div className="flex items-center justify-between mt-3">
                   <div className="flex items-center border border-border rounded-full">
                     <button onClick={() => setQty(it.id, it.qty - 1)} className="w-8 h-8 flex items-center justify-center"><Minus className="w-3.5 h-3.5" /></button>
@@ -52,9 +59,21 @@ export function CartDrawer() {
           ))}
         </div>
         {items.length > 0 && (
-          <div className="border-t border-border p-5 space-y-3 bg-surface">
-            <div className="flex items-center justify-between">
-              <span className="text-sm text-muted-foreground">Subtotal</span>
+          <div className="border-t border-border p-5 space-y-2 bg-surface">
+            {bundleSavings > 0 && (
+              <>
+                <div className="flex items-center justify-between text-sm text-muted-foreground">
+                  <span>Subtotal</span>
+                  <span className="line-through">{formatZAR(subtotal)}</span>
+                </div>
+                <div className="flex items-center justify-between text-sm text-primary">
+                  <span>Bundle discount applied</span>
+                  <span>−{formatZAR(bundleSavings)}</span>
+                </div>
+              </>
+            )}
+            <div className="flex items-center justify-between pt-1">
+              <span className="text-sm text-muted-foreground">Total</span>
               <span className="text-lg font-medium">{formatZAR(total)}</span>
             </div>
             <p className="text-xs text-muted-foreground">Shipping calculated at checkout.</p>
