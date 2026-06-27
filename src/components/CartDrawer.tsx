@@ -59,9 +59,21 @@ export function CartDrawer() {
           ))}
         </div>
         {items.length > 0 && (
-          <div className="border-t border-border p-5 space-y-3 bg-surface">
-            <div className="flex items-center justify-between">
-              <span className="text-sm text-muted-foreground">Subtotal</span>
+          <div className="border-t border-border p-5 space-y-2 bg-surface">
+            {bundleSavings > 0 && (
+              <>
+                <div className="flex items-center justify-between text-sm text-muted-foreground">
+                  <span>Subtotal</span>
+                  <span className="line-through">{formatZAR(subtotal)}</span>
+                </div>
+                <div className="flex items-center justify-between text-sm text-primary">
+                  <span>Bundle discount applied</span>
+                  <span>−{formatZAR(bundleSavings)}</span>
+                </div>
+              </>
+            )}
+            <div className="flex items-center justify-between pt-1">
+              <span className="text-sm text-muted-foreground">Total</span>
               <span className="text-lg font-medium">{formatZAR(total)}</span>
             </div>
             <p className="text-xs text-muted-foreground">Shipping calculated at checkout.</p>
