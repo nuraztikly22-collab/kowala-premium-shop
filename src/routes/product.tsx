@@ -27,6 +27,7 @@ function Stars({ size = 14 }: { size?: number }) {
 
 function Product() {
   const [colorKey, setColorKey] = useState<ColorKey>("botanical");
+  const [color2Key, setColor2Key] = useState<ColorKey>("houndstooth");
   const [bundle, setBundle] = useState<1 | 2>(2);
   const [qty, setQty] = useState(1);
   const [slide, setSlide] = useState(0);
@@ -35,7 +36,8 @@ function Product() {
   const { add } = useCart();
 
   const color = COLORS.find((c) => c.key === colorKey)!;
-  const price = bundle === 2 ? 900 : 499;
+  const color2 = COLORS.find((c) => c.key === color2Key)!;
+  const price = bundle === 2 ? 899 : 499;
 
   useEffect(() => { setSlide(0); }, [colorKey]);
 
@@ -51,13 +53,16 @@ function Product() {
 
   const handleAdd = () => {
     add({
-      id: `${colorKey}-${bundle}`,
+      id: bundle === 2 ? `bundle-${colorKey}-${color2Key}` : `single-${colorKey}`,
       color: colorKey,
       colorName: color.name,
+      color2: bundle === 2 ? color2Key : undefined,
+      color2Name: bundle === 2 ? color2.name : undefined,
       bundle,
       qty,
       price,
       image: color.images[0],
+      image2: bundle === 2 ? color2.images[0] : undefined,
     });
   };
 
