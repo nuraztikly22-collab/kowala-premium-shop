@@ -36,7 +36,7 @@ export function Header() {
           </button>
 
           <Link to="/" className="flex items-center">
-            <img src={ASSETS.logo} alt="Kowala" className="h-9 md:h-10 w-auto" />
+            <img src={ASSETS.logo} alt="Kowala" className="h-14 md:h-16 w-auto" />
           </Link>
 
           <button
