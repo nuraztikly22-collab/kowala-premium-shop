@@ -65,7 +65,7 @@ export function Header() {
           onClick={(e) => e.stopPropagation()}
         >
           <div className="flex items-center justify-between h-16 md:h-20 px-5 border-b border-border">
-            <img src={ASSETS.logo} alt="Kowala" className="h-9 w-auto" />
+            <img src={ASSETS.logo} alt="Kowala" className="h-14 w-auto" />
             <button
               aria-label="Close menu"
               onClick={() => setOpen(false)}
