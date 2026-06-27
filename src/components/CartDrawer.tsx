@@ -4,7 +4,7 @@ import { formatZAR, useCart } from "@/lib/cart";
 import { useEffect } from "react";
 
 export function CartDrawer() {
-  const { items, open, setOpen, remove, setQty, total } = useCart();
+  const { items, open, setOpen, remove, setQty, subtotal, total, bundleSavings } = useCart();
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
