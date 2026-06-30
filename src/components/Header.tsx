@@ -26,7 +26,7 @@ export function Header() {
   return (
     <>
       <header className="sticky top-0 z-40 w-full bg-white/85 backdrop-blur-md border-b border-border/60">
-        <div className="container-kw flex items-center justify-between h-16 md:h-20">
+        <div className="container-kw flex items-center justify-between h-20 md:h-28">
           <button
             aria-label="Open menu"
             onClick={() => setOpen(true)}
@@ -36,7 +36,7 @@ export function Header() {
           </button>
 
           <Link to="/" className="flex items-center">
-            <img src={ASSETS.logo} alt="Kowala" className="h-14 md:h-16 w-auto" />
+            <img src={ASSETS.logo} alt="Kowala" className="h-20 md:h-24 w-auto" />
           </Link>
 
           <button
