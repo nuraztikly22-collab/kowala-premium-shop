@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { COLORS, type ColorKey } from "@/lib/brand";
 import { formatZAR, useCart } from "@/lib/cart";
 import { Star, ShieldCheck, Truck, Award, MessageCircle, ChevronLeft, ChevronRight, Check, Minus, Plus, Heart, Hand, Droplet, Settings2, Baby, Smile, Plane, Lock, Feather, Activity } from "lucide-react";
+import { ReviewWall } from "@/components/ReviewWall";
 
 export const Route = createFileRoute("/product")({
   head: () => ({
