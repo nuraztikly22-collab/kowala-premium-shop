@@ -270,29 +270,8 @@ function Product() {
       </section>
 
       {/* Reviews */}
-      <section className="section-pad">
-        <div className="container-kw">
-          <div className="text-center mb-12">
-            <Stars size={18} />
-            <p className="mt-3 text-lg">4.9 from 1,284 happy parents</p>
-          </div>
-          <div className="grid gap-5 md:grid-cols-3">
-            {[
-              { name: "Megan F.", city: "Cape Town", text: "I bought two — one for me, one for my husband. We use them daily and our little girl loves it.", img: COLORS[0].images[0] },
-              { name: "Thandi N.", city: "Pretoria", text: "The fabric is gorgeous and it feels really well made. So glad I found a South African brand for this.", img: COLORS[2].images[0] },
-              { name: "Carla J.", city: "Port Elizabeth", text: "Easy to put on, easy to wash, and my back doesn't ache anymore. Worth every cent.", img: COLORS[1].images[0] },
-            ].map((r) => (
-              <div key={r.name} className="bg-beige rounded-3xl p-6">
-                <img src={r.img} alt="" className="w-full h-48 object-cover rounded-2xl mb-5" loading="lazy" />
-                <Stars />
-                <p className="mt-3 text-sm leading-relaxed">"{r.text}"</p>
-                <p className="mt-4 text-sm font-medium">{r.name}</p>
-                <p className="text-xs text-muted-foreground">{r.city}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <ReviewWall title="From Kowala families" subtitle="Real photos and stories from parents using the Kowala Sling Carrier." />
+
 
       {/* FAQ */}
       <section className="section-pad bg-beige">
