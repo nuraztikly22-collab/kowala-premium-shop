@@ -153,28 +153,11 @@ function Home() {
       </section>
 
       {/* REVIEWS */}
-      <section className="section-pad">
-        <div className="container-kw">
-          <div className="max-w-xl mx-auto text-center mb-14">
-            <Stars size={18} />
-            <h2 className="text-3xl md:text-4xl font-medium mt-3">Loved by mothers across South Africa.</h2>
-          </div>
-          <div className="grid gap-5 md:grid-cols-3">
-            {[
-              { name: "Lerato M.", city: "Johannesburg", text: "Honestly the best baby purchase I've made. Comfortable for me, calm for my little one." },
-              { name: "Anneke v.d. M.", city: "Stellenbosch", text: "Soft, beautifully made, and so easy to put on. I use it every single day." },
-              { name: "Zanele K.", city: "Durban", text: "Finally something premium that's also practical. The fabric feels gorgeous." },
-            ].map((r) => (
-              <div key={r.name} className="bg-beige rounded-3xl p-7">
-                <Stars />
-                <p className="mt-4 text-sm leading-relaxed">"{r.text}"</p>
-                <p className="mt-5 text-sm font-medium">{r.name}</p>
-                <p className="text-xs text-muted-foreground">{r.city}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <ReviewWall
+        title="Loved by mothers across South Africa."
+        subtitle="Real photos and stories from Kowala families. Yours could be next."
+      />
+
 
       {/* TRUST */}
       <section className="py-10 md:py-14 bg-beige">
