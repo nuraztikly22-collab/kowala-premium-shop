@@ -2,6 +2,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { COLORS, HERO_IMAGE } from "@/lib/brand";
 import { Star, Heart, Hand, Droplet, Settings2, Baby, Smile, ShieldCheck, Truck, Award, MessageCircle } from "lucide-react";
 import { useState } from "react";
+import { ReviewWall } from "@/components/ReviewWall";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
