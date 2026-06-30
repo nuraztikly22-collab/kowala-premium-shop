@@ -79,8 +79,7 @@ function Product() {
             <p className="text-xs tracking-[0.2em] uppercase text-primary font-medium">Kowala</p>
             <h1 className="text-3xl md:text-4xl font-medium mt-2">Kowala Sling Carrier</h1>
             <div className="flex items-center gap-2 mt-3">
-              <Stars />
-              <span className="text-sm text-muted-foreground">4.9 · 1,284 reviews</span>
+              <span className="text-sm text-muted-foreground">Premium baby sling carrier · Proudly South African</span>
             </div>
             <p className="mt-5 text-muted-foreground leading-relaxed text-sm md:text-base">
               The soft, structured sling that lets you carry your baby close — and carry on with your day.
