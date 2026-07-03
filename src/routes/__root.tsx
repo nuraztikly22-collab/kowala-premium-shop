@@ -14,7 +14,8 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { CartDrawer } from "@/components/CartDrawer";
-import { CartProvider } from "@/lib/cart";
+import { Toaster } from "@/components/ui/sonner";
+import { useCartSync } from "@/hooks/useCartSync";
 
 function NotFoundComponent() {
   return (
@@ -91,14 +92,14 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  useCartSync();
   return (
     <QueryClientProvider client={queryClient}>
-      <CartProvider>
-        <Header />
-        <main><Outlet /></main>
-        <Footer />
-        <CartDrawer />
-      </CartProvider>
+      <Header />
+      <main><Outlet /></main>
+      <Footer />
+      <CartDrawer />
+      <Toaster />
     </QueryClientProvider>
   );
 }
