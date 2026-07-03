@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { Menu, ShoppingBag, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { ASSETS } from "@/lib/brand";
-import { useCart } from "@/lib/cart";
+import { useCartStore } from "@/stores/cartStore";
 
 const NAV = [
   { to: "/", label: "Home" },
@@ -17,7 +17,8 @@ const NAV = [
 
 export function Header() {
   const [open, setOpen] = useState(false);
-  const { count, setOpen: setCartOpen } = useCart();
+  const count = useCartStore((s) => s.items.reduce((n, i) => n + i.quantity, 0));
+  const setCartOpen = useCartStore((s) => s.setOpen);
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
