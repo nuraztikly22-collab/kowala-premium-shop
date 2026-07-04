@@ -1,8 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { COLORS, HERO_IMAGE } from "@/lib/brand";
-import { Star, Heart, Hand, Droplet, Settings2, Baby, Smile, ShieldCheck, Truck, Award, MessageCircle } from "lucide-react";
+import { Star, Heart, Hand, Droplet, Settings2, Baby, Smile, ShieldCheck, Truck, Award, MessageCircle, Loader2 } from "lucide-react";
 import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { ReviewWall } from "@/components/ReviewWall";
+import { PRODUCTS_QUERY, formatMoney, storefrontApiRequest, type ShopifyProduct } from "@/lib/shopify";
+
 
 
 export const Route = createFileRoute("/")({
@@ -57,6 +60,10 @@ function Home() {
           </div>
         </div>
       </section>
+
+      {/* FEATURED PRODUCT (live from Shopify) */}
+      <FeaturedProduct />
+
 
       {/* PROBLEM */}
       <section className="section-pad">
@@ -209,7 +216,69 @@ function Home() {
   );
 }
 
+function FeaturedProduct() {
+  const { data, isLoading } = useQuery({
+    queryKey: ["shopify", "first-product"],
+    queryFn: async (): Promise<ShopifyProduct | null> => {
+      const res = await storefrontApiRequest<{ products: { edges: ShopifyProduct[] } }>(
+        PRODUCTS_QUERY,
+        { first: 1 },
+      );
+      return res?.data?.products?.edges?.[0] ?? null;
+    },
+  });
+
+  if (isLoading) {
+    return (
+      <section className="section-pad">
+        <div className="container-kw flex justify-center">
+          <Loader2 className="w-6 h-6 animate-spin text-primary" />
+        </div>
+      </section>
+    );
+  }
+
+  if (!data) return null;
+  const p = data.node;
+  const img = p.images?.edges?.[0]?.node;
+  const price = p.priceRange.minVariantPrice;
+
+  return (
+    <section className="section-pad">
+      <div className="container-kw">
+        <div className="max-w-xl mx-auto text-center mb-12">
+          <p className="text-xs tracking-[0.2em] uppercase text-primary font-medium mb-3">Featured</p>
+          <h2 className="text-3xl md:text-4xl font-medium">Shop the carrier</h2>
+        </div>
+        <Link to="/product" className="block group max-w-4xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-8 items-center bg-beige rounded-3xl overflow-hidden">
+            <div className="aspect-square overflow-hidden">
+              {img && (
+                <img
+                  src={img.url}
+                  alt={img.altText ?? p.title}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+                  loading="lazy"
+                />
+              )}
+            </div>
+            <div className="p-8 md:p-12">
+              <h3 className="text-2xl md:text-3xl font-medium">{p.title}</h3>
+              <p className="mt-4 text-muted-foreground leading-relaxed line-clamp-4">{p.description}</p>
+              <p className="mt-6 text-2xl font-medium text-primary">
+                {formatMoney(price.amount, price.currencyCode)}
+              </p>
+              <span className="btn-primary mt-8 inline-flex">View product</span>
+            </div>
+          </div>
+        </Link>
+      </div>
+    </section>
+  );
+}
+
 function FinalCta() {
+
   const [i] = useState(0);
   return (
     <section className="px-5 md:px-8 pb-20">
