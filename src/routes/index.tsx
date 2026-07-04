@@ -61,6 +61,10 @@ function Home() {
         </div>
       </section>
 
+      {/* FEATURED PRODUCT (live from Shopify) */}
+      <FeaturedProduct />
+
+
       {/* PROBLEM */}
       <section className="section-pad">
         <div className="container-kw">
