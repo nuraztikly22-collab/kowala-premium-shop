@@ -1,9 +1,9 @@
 import { toast } from "sonner";
 
 export const SHOPIFY_API_VERSION = "2025-07";
-export const SHOPIFY_STORE_PERMANENT_DOMAIN = "kowala-premium-shop-ikq1z.myshopify.com";
+export const SHOPIFY_STORE_PERMANENT_DOMAIN = "c8eb6b-f9.myshopify.com";
 export const SHOPIFY_STOREFRONT_URL = `https://${SHOPIFY_STORE_PERMANENT_DOMAIN}/api/${SHOPIFY_API_VERSION}/graphql.json`;
-export const SHOPIFY_STOREFRONT_TOKEN = "a5ed75c63b0c625153ece1aea94eaeb6";
+export const SHOPIFY_STOREFRONT_TOKEN = "bc2a62c45cb77452c3e3d7d4b9815d9e";
 
 export interface ShopifyImage {
   url: string;
