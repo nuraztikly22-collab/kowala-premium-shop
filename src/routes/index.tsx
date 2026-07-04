@@ -1,8 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { COLORS, HERO_IMAGE } from "@/lib/brand";
-import { Star, Heart, Hand, Droplet, Settings2, Baby, Smile, ShieldCheck, Truck, Award, MessageCircle } from "lucide-react";
+import { Star, Heart, Hand, Droplet, Settings2, Baby, Smile, ShieldCheck, Truck, Award, MessageCircle, Loader2 } from "lucide-react";
 import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { ReviewWall } from "@/components/ReviewWall";
+import { PRODUCTS_QUERY, formatMoney, storefrontApiRequest, type ShopifyProduct } from "@/lib/shopify";
+
 
 
 export const Route = createFileRoute("/")({
